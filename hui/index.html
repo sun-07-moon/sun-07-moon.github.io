@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徽映同行 - 皖南乡村劳动教育研学旅行探索者</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Chart.js用于数据展示 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hui: {
+                            50: '#f5f7f6',
+                            100: '#e4e9e7',
+                            300: '#a9b9b5',
+                            500: '#6d8780',
+                            700: '#4a5f5a',
+                            900: '#2d3b38'
+                        },
+                        tea: {
+                            300: '#c8d8c7',
+                            500: '#8aa888',
+                            700: '#5a7a58'
+                        },
+                        red: {
+                            600: '#c53030',
+                            800: '#9b2c2c'
+                        }
+                    },
+                    fontFamily: {
+                        song: ['"Noto Serif SC"', 'serif'],
+                        sans: ['"Noto Sans SC"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+            .section-fade {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+            .section-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    
+    <!-- 引入字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-sans text-hui-900 bg-hui-50">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center space-x-2">
+                <span class="text-2xl font-song font-bold text-white text-shadow">徽映同行</span>
+            </a>
+            
+            <!-- 桌面端导航 -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-white hover:text-tea-300 transition-colors">首页</a>
+                <a href="#heritage" class="text-white hover:text-tea-300 transition-colors">非遗体验</a>
+                <a href="#red" class="text-white hover:text-tea-300 transition-colors">红色力量</a>
+                <a href="#products" class="text-white hover:text-tea-300 transition-colors">核心产品</a>
+                <a href="#advantages" class="text-white hover:text-tea-300 transition-colors">研学优势</a>
+                <a href="#cases" class="text-white hover:text-tea-300 transition-colors">精准案例</a>
+                <a href="#about" class="text-white hover:text-tea-300 transition-colors">关于我们</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-hui-900/95 bg-blur">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-tea-300 transition-colors py-2">首页</a>
+                <a href="#heritage" class="text-white hover:text-tea-300 transition-colors py-2">非遗体验</a>
+                <a href="#red" class="text-white hover:text-tea-300 transition-colors py-2">红色力量</a>
+                <a href="#products" class="text-white hover:text-tea-300 transition-colors py-2">核心产品</a>
+                <a href="#advantages" class="text-white hover:text-tea-300 transition-colors py-2">研学优势</a>
+                <a href="#cases" class="text-white hover:text-tea-300 transition-colors py-2">精准案例</a>
+                <a href="#about" class="text-white hover:text-tea-300 transition-colors py-2">关于我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页/Hero区 -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- 背景图 -->
+        <div class="absolute inset-0 z-0">
+            <img src="1.png" alt="皖南乡村风光" class="w-full h-full object-cover opacity-80">
+            <div class="absolute inset-0 bg-gradient-to-b from-hui-900/70 to-hui-900/40"></div>
+        </div>
+        
+        <!-- 内容 -->
+        <div class="container mx-auto px-4 md:px-8 relative z-10 text-center">
+            <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-song font-bold text-white mb-4 text-shadow leading-tight">
+                徽映同行
+            </h1>
+            <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-white mb-6 max-w-3xl mx-auto">
+                皖南乡村劳动教育研学旅行探索者
+            </p>
+            <div class="max-w-3xl mx-auto text-white/90 mb-10 text-[clamp(1rem,2vw,1.2rem)] leading-relaxed">
+                聚焦皖南乡村地区，以茶叶、竹笋等非物质文化遗产为载体，结合青少年劳动教育目标与人工智能技术，设计多样化研学活动。依托安徽师范大学专业资源，让研学更具深度与专业性。
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#heritage" class="bg-tea-700 hover:bg-tea-500 text-white font-medium py-3 px-8 rounded-md transition-colors shadow-lg">
+                    探索非遗体验
+                </a>
+                <a href="#about" class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-medium py-3 px-8 rounded-md transition-colors">
+                    了解更多
+                </a>
+            </div>
+        </div>
+        
+        <!-- 滚动提示 -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 animate-bounce">
+            <i class="fa fa-angle-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- 非遗体验 -->
+    <section id="heritage" class="py-20 bg-white section-fade">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-song font-bold text-hui-900 mb-4">非遗体验</h2>
+                <div class="w-20 h-1 bg-tea-500 mx-auto"></div>
+            </div>
+
+            <!-- 非遗线路标签 -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="heritage-tab active bg-tea-700 text-white px-6 py-2 rounded-md transition-colors" data-target="slow-life">
+                    徽州慢生活
+                </button>
+                <button class="heritage-tab bg-hui-100 hover:bg-hui-300 text-hui-900 px-6 py-2 rounded-md transition-colors" data-target="workshop">
+                    劳动+非遗工坊
+                </button>
+                <button class="heritage-tab bg-hui-100 hover:bg-hui-300 text-hui-900 px-6 py-2 rounded-md transition-colors" data-target="medicine-food">
+                    药食同源工坊
+                </button>
+            </div>
+
+            <!-- 1. 徽州慢生活 -->
+            <div id="slow-life" class="heritage-content block">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- 小学生课程 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="2.jpg" alt="一日小徽匠" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                小学生1日研学课程（市内）
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">一日小徽匠</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">行程安排：</h4>
+                            <ul class="space-y-2 mb-4 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-map-marker text-tea-700 mt-1 mr-2"></i>
+                                    <span>本地非遗馆（徽州剪纸/糖画制作）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-map-marker text-tea-700 mt-1 mr-2"></i>
+                                    <span>城市周边徽派建筑写生+马头墙积木搭建</span>
+                                </li>
+                            </ul>
+                            <div class="mb-4">
+                                <h4 class="text-hui-700 font-medium mb-1">特色：</h4>
+                                <p class="text-sm text-hui-700">卡通版研学手册，任务盖章兑换徽州小烧饼</p>
+                            </div>
+                            <div class="flex justify-between items-center mt-6">
+                                <span class="text-tea-700 font-bold text-xl">¥128/人</span>
+                                <span class="text-xs text-hui-500">含物料+保险</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 中学生课程 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="3.png" alt="少年徽行记" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                中学生3日研学课程（省内）
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">少年徽行记</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">行程安排：</h4>
+                            <ul class="space-y-2 mb-4 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-calendar text-tea-700 mt-1 mr-2"></i>
+                                    <span>Day1：徽州文化博物馆→唐模古村</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-calendar text-tea-700 mt-1 mr-2"></i>
+                                    <span>Day2：黄山茶基地→齐口村</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-calendar text-tea-700 mt-1 mr-2"></i>
+                                    <span>Day3：宏村→返程</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center mt-6">
+                                <span class="text-tea-700 font-bold text-xl">¥880/人</span>
+                                <span class="text-xs text-hui-500">含食宿、导师、保险</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 寒暑假课程 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="4.png" alt="匠人成长营" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                寒暑假5日研学课程（黄山线）
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">匠人成长营</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">特色体验：</h4>
+                            <ul class="space-y-2 mb-4 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>72小时"徽墨大师班"（从炼烟到成型）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>匠山"荒野求生"（挖笋采茶+星空露营）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>高校"古建侦探团"（呈坎风水测绘）</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center mt-6">
+                                <span class="text-tea-700 font-bold text-xl">¥2580/人</span>
+                                <span class="text-xs text-hui-500">团体价¥2480/人</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 劳动+非遗沉浸式研学工坊 -->
+            <div id="workshop" class="heritage-content hidden">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- 小学1日课程 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="4.jpg" alt="小手传非遗" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                小学1日研学课程（市内）
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">小手传非遗</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">亮点：</h4>
+                            <ul class="space-y-2 mb-6 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-tea-700 mt-1 mr-2"></i>
+                                    <span>竹编小动物制作（非遗导师指导）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-tea-700 mt-1 mr-2"></i>
+                                    <span>迷你茶田体验（盆栽茶树养护）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-tea-700 mt-1 mr-2"></i>
+                                    <span>非遗童谣互动游戏</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center">
+                                <span class="text-tea-700 font-bold text-xl">¥128/人</span>
+                                <span class="text-xs text-hui-500">含材料包+保险</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 中学3日课程 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="5.png" alt="茶竹双修班" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                中学3日研学课程（省内）
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">茶竹双修班</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">行程：</h4>
+                            <ul class="space-y-2 mb-4 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-calendar text-tea-700 mt-1 mr-2"></i>
+                                    <span>Day1：采茶→古法炒茶→茶叶包装设计</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-calendar text-tea-700 mt-1 mr-2"></i>
+                                    <span>Day2：挖春笋→竹筒饭制作→非遗工坊探秘</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center mt-6">
+                                <span class="text-tea-700 font-bold text-xl">¥680/人</span>
+                                <span class="text-xs text-hui-500">含民宿+三餐</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 深度5日大师营 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="6.png" alt="非遗接班人特训" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                深度5日大师营
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">非遗接班人特训</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">硬核体验：</h4>
+                            <ul class="space-y-2 mb-4 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>从采茶到红茶发酵全流程</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>王河舒席竹编大师课（作品可售卖）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>直播带货自己的劳动成果</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-tea-700 font-bold text-xl">¥2580/人</span>
+                                <span class="text-xs text-hui-500">含专业工具+作品寄送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 药食同源非遗工坊 -->
+            <div id="medicine-food" class="heritage-content hidden">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- 高校1日课程 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="7.jpg" alt="发酵工坊·非遗初探" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                高校1日研学课程（市内）
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">发酵工坊·非遗初探</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">亮点：</h4>
+                            <ul class="space-y-2 mb-6 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-flask text-tea-700 mt-1 mr-2"></i>
+                                    <span>食品发酵基础实验与微生物观察</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-birthday-cake text-tea-700 mt-1 mr-2"></i>
+                                    <span>草本糕点手作（贡菊与红茶原料）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-leaf text-tea-700 mt-1 mr-2"></i>
+                                    <span>功能性茶饮品评与营养认知</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center">
+                                <span class="text-tea-700 font-bold text-xl">¥125/人</span>
+                                <span class="text-xs text-hui-500">含制作材料+保险</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3日药食同产研学营 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="8.png" alt="从菌种到货架" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                3日药食同产研学营
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">从菌种到货架</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">全链实践：</h4>
+                            <ul class="space-y-2 mb-4 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-calendar text-tea-700 mt-1 mr-2"></i>
+                                    <span>Day1：参访茶园与草本基地</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-calendar text-tea-700 mt-1 mr-2"></i>
+                                    <span>Day2：发酵茶饮菌种培养实操</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-calendar text-tea-700 mt-1 mr-2"></i>
+                                    <span>Day3：草本饼干研发与包装设计</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center mt-6">
+                                <span class="text-tea-700 font-bold text-xl">¥880/人</span>
+                                <span class="text-xs text-hui-500">含实验器材+材料</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7日非遗产业大师班 -->
+                    <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                        <div class="h-56 overflow-hidden">
+                            <img src="9.png" alt="非遗产业大师班" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-tea-100 text-tea-800 text-xs font-medium px-2.5 py-0.5 rounded mb-3">
+                                7日非遗产业大师班
+                            </div>
+                            <h3 class="text-xl font-song font-semibold text-hui-900 mb-3">非遗产业大师班</h3>
+                            <h4 class="text-hui-700 font-medium mb-2">硬核体验：</h4>
+                            <ul class="space-y-2 mb-4 text-sm text-hui-700">
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>从采贡菊到发酵全流程</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>非遗雕刻大师1对1包装设计指导</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-star text-tea-700 mt-1 mr-2"></i>
+                                    <span>社群电商运营实战</span>
+                                </li>
+                            </ul>
+                            <div class="flex justify-between items-center mt-2">
+                                <span class="text-tea-700 font-bold text-xl">¥3580/人</span>
+                                <span class="text-xs text-hui-500">含版权注册服务</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 红色力量 -->
+    <section id="red" class="py-20 bg-hui-50 section-fade">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-song font-bold text-hui-900 mb-4">红色力量</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 线路1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                    <div class="h-48 overflow-hidden bg-red-800 flex items-center justify-center">
+                        <img src="10.jpg" alt="百万雄师过大江相关图片" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-song font-semibold text-hui-900 mb-4">百万雄师过大江</h3>
+                        <ul class="space-y-3 text-hui-700">
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>渡江战役纪念馆（合肥市）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>渡江战役总前委旧址纪念馆（肥东县）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>长临河老街（肥东县）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>李克农故居（巢湖市）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>渡江战役夏家湖登陆点纪念馆（芜湖市）</span>
+                            </li>
+                        </ul>
+                        <a href="#contactForm" class="inline-block mt-6 text-red-600 hover:text-red-800 transition-colors font-medium">
+                            咨询详情 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 线路2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                    <div class="h-48 overflow-hidden bg-red-800 flex items-center justify-center">
+                        <img src="113.jpg" alt="新四军与敌人奋战到底" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-song font-semibold text-hui-900 mb-4">新四军与敌人奋战到底</h3>
+                        <ul class="space-y-3 text-hui-700">
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>岩寺新四军军部旧址（徽州区）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>新四军土塘军部陈列馆（南陵县）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>云岭新四军军部旧址（泾县）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>皖南事变烈士陵园（泾县）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>中国宣纸文化园 & 桃花潭风景区（泾县）</span>
+                            </li>
+                        </ul>
+                        <a href="#contactForm" class="inline-block mt-6 text-red-600 hover:text-red-800 transition-colors font-medium">
+                            咨询详情 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 线路3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                    <div class="h-48 overflow-hidden bg-red-800 flex items-center justify-center">
+                        <img src="111.jpg" alt="科学技术要打头阵" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-song font-semibold text-hui-900 mb-4">科学技术要打头阵</h3>
+                        <ul class="space-y-3 text-hui-700">
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>安徽创新馆（合肥市）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>安徽省科技馆（合肥市）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>合肥科技馆科技旅游示范基地</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>合肥科技馆（合肥蜀西湖馆区）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-map-marker text-red-600 mt-1 mr-2"></i>
+                                <span>芜湖产业创新馆（芜湖市）</span>
+                            </li>
+                        </ul>
+                        <a href="#contactForm" class="inline-block mt-6 text-red-600 hover:text-red-800 transition-colors font-medium">
+                            咨询详情 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心产品 -->
+    <section id="products" class="py-20 bg-white section-fade">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-song font-bold text-hui-900 mb-4">核心产品</h2>
+                <div class="w-20 h-1 bg-tea-500 mx-auto"></div>
+            </div>
+
+            <!-- 传统非遗产品 -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-song font-semibold text-hui-900 mb-8 text-center">传统非遗产品</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 产品1 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <div class="w-20 h-20 bg-tea-100 rounded-full flex items-center justify-center mb-4">
+                            <img src="13.png" alt="茶风皖韵" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-lg font-semibold text-hui-900 mb-2">茶风皖韵</h4>
+                        <p class="text-hui-700 text-sm">品味古茶之香，体验传统制茶工艺，感受皖南茶文化精髓</p>
+                    </div>
+
+                    <!-- 产品2 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <div class="w-20 h-20 bg-tea-100 rounded-full flex items-center justify-center mb-4">
+                            <img src="14.png" alt="竹韵手作" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-lg font-semibold text-hui-900 mb-2">竹韵手作</h4>
+                        <p class="text-hui-700 text-sm">共感竹编之韵，在非遗传承人的指导下学习传统竹编技艺</p>
+                    </div>
+
+                    <!-- 产品3 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <div class="w-20 h-20 bg-tea-100 rounded-full flex items-center justify-center mb-4">
+                            <img src="15.png" alt="竹编伞影" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-lg font-semibold text-hui-900 mb-2">竹编扇影</h4>
+                        <p class="text-hui-700 text-sm">重走制扇之路，从选材到成品，完整体验传统竹扇制作工艺</p>
+                    </div>
+
+                    <!-- 产品4 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <div class="w-20 h-20 bg-tea-100 rounded-full flex items-center justify-center mb-4">
+                            <img src="16.jpg" alt="徽派非遗盲盒" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-lg font-semibold text-hui-900 mb-2">徽派非遗盲盒</h4>
+                        <p class="text-hui-700 text-sm">含徽墨/歙砚小样、工具及短视频教程，现代审美设计，限量发售</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 研学旅行产品 -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-song font-semibold text-hui-900 mb-8 text-center">研学旅行产品</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- 产品1 -->
+                    <div class="bg-hui-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="114.jpg" alt="非遗研学旅行" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-hui-900 mb-3">非遗研学旅行</h4>
+                            <p class="text-hui-700 mb-4">徽墨/歙砚主题路线，融合劳动教育、自然风光与民俗体验，打造"三位一体"模式。</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-tea-700 font-bold">灵活定价</span>
+                                <a href="#contactForm" class="text-tea-700 hover:text-tea-500 transition-colors">了解详情</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 产品2 -->
+                    <div class="bg-hui-50 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="17.jpg" alt="非遗劳动教育课程" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-hui-900 mb-3">非遗劳动教育课程</h4>
+                            <p class="text-hui-700 mb-4">与学校/机构合作，提供历史讲解、工艺实践，培养动手能力与文化认同。</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-tea-700 font-bold">定制化方案</span>
+                                <a href="#contactForm" class="text-tea-700 hover:text-tea-500 transition-colors">了解详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数字产品与服务 -->
+            <div>
+                <h3 class="text-2xl font-song font-semibold text-hui-900 mb-8 text-center">数字产品与服务</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- 服务1 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <h4 class="text-lg font-semibold text-hui-900 mb-3 flex items-center">
+                            <i class="fa fa-database text-tea-700 mr-2"></i> 非遗数字数据库
+                        </h4>
+                        <p class="text-hui-700 text-sm mb-3">收录皖南68项非遗项目、120+传承人资料，含高清影像、技艺解析视频，免费开放浏览。</p>
+                        <span class="text-tea-700 font-medium">免费基础版</span>
+                    </div>
+
+                    <!-- 服务2 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <h4 class="text-lg font-semibold text-hui-900 mb-3 flex items-center">
+                            <i class="fa fa-graduation-cap text-tea-700 mr-2"></i> 在线课程体系
+                        </h4>
+                        <p class="text-hui-700 text-sm mb-3">分"入门体验课"（9.9元起）、"大师精修课"（99元起），支持碎片化学习与进度保存。</p>
+                        <span class="text-tea-700 font-medium">分层定价</span>
+                    </div>
+
+                    <!-- 服务3 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <h4 class="text-lg font-semibold text-hui-900 mb-3 flex items-center">
+                            <i class="fa fa-users text-tea-700 mr-2"></i> 互动交流社区
+                        </h4>
+                        <p class="text-hui-700 text-sm mb-3">设作品展示、技艺问答、活动预约板块，用户可发布UGC内容，参与月度创作赛。</p>
+                        <span class="text-tea-700 font-medium">0门槛参与</span>
+                    </div>
+
+                    <!-- 服务4 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <h4 class="text-lg font-semibold text-hui-900 mb-3 flex items-center">
+                            <i class="fa fa-vr-cardboard text-tea-700 mr-2"></i> 数字体验中心
+                        </h4>
+                        <p class="text-hui-700 text-sm mb-3">VR宣纸制作工坊（19.9元/次）、AR徽墨潮T扫描互动（购买产品免费解锁）。</p>
+                        <span class="text-tea-700 font-medium">技术体验亲民价</span>
+                    </div>
+
+                    <!-- 服务5 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <h4 class="text-lg font-semibold text-hui-900 mb-3 flex items-center">
+                            <i class="fa fa-map-pin text-tea-700 mr-2"></i> 非遗研学基地
+                        </h4>
+                        <p class="text-hui-700 text-sm mb-3">泾县宣纸文化园等6大基地：理论课（30元/节）+实操课（80元/节），含工具耗材。</p>
+                        <span class="text-tea-700 font-medium">单日研学198元起</span>
+                    </div>
+
+                    <!-- 服务6 -->
+                    <div class="bg-hui-50 rounded-lg p-6 transition-all duration-300 hover:shadow-md">
+                        <h4 class="text-lg font-semibold text-hui-900 mb-3 flex items-center">
+                            <i class="fa fa-building text-tea-700 mr-2"></i> 城市体验门店
+                        </h4>
+                        <p class="text-hui-700 text-sm mb-3">非遗展示馆（免费开放）+手工工坊（单次体验59元起，如徽墨描金、纸雕DIY）。</p>
+                        <span class="text-tea-700 font-medium">会员储值享8折</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研学优势 -->
+    <section id="advantages" class="py-20 bg-hui-50 section-fade">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-song font-bold text-hui-900 mb-4">研学优势</h2>
+                <div class="w-20 h-1 bg-tea-500 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 优势1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="19.jpg" alt="非遗传承" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-hui-900/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h3 class="text-xl font-song font-semibold text-white mb-2">非遗传承</h3>
+                            <div class="w-16 h-1 bg-tea-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-hui-700">通过地方课让学生在亲身体验中学习和传承非遗技艺，感受传统文化的魅力，实现非遗文化的代代相传。</p>
+                    </div>
+                </div>
+
+                <!-- 优势2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="116.jpg" alt="反哺乡村经济" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-hui-900/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h3 class="text-xl font-song font-semibold text-white mb-2">反哺乡村经济</h3>
+                            <div class="w-16 h-1 bg-tea-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-hui-700">利用田园山水资源，建设活乡村体验式旅游。深入乡村腹地，亲身体验农耕乐趣，带动就业。</p>
+                    </div>
+                </div>
+
+                <!-- 优势3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="115.jpg" alt="劳动教育" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-hui-900/80 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h3 class="text-xl font-song font-semibold text-white mb-2">劳动教育</h3>
+                            <div class="w-16 h-1 bg-tea-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-hui-700">亲自动手炒制茶叶、编织竹器，沉浸式体验劳动魅力。引领学生深入生活实践，感受劳动成果的喜悦。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据优势 -->
+            <div class="mt-16 bg-white rounded-lg shadow-md p-8">
+                <h3 class="text-2xl font-song font-semibold text-hui-900 mb-8 text-center">研学成果数据</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <canvas id="statsChart" width="400" height="300"></canvas>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-hui-50 rounded-lg p-6 text-center">
+                            <div class="text-4xl font-bold text-tea-700 mb-2">500+</div>
+                            <p class="text-hui-700">家长好评</p>
+                        </div>
+                        <div class="bg-hui-50 rounded-lg p-6 text-center">
+                            <div class="text-4xl font-bold text-tea-700 mb-2">110+</div>
+                            <p class="text-hui-700">带动就业</p>
+                        </div>
+                        <div class="bg-hui-50 rounded-lg p-6 text-center">
+                            <div class="text-4xl font-bold text-tea-700 mb-2">68</div>
+                            <p class="text-hui-700">非遗项目</p>
+                        </div>
+                        <div class="bg-hui-50 rounded-lg p-6 text-center">
+                            <div class="text-4xl font-bold text-tea-700 mb-2">120+</div>
+                            <p class="text-hui-700">合作传承人</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精准案例 -->
+<section id="cases" class="py-20 bg-white section-fade">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-song font-bold text-hui-900 mb-4">精准案例</h2>
+            <div class="w-20 h-1 bg-tea-500 mx-auto"></div>
+        </div>
+
+        <!-- 案例统一卡片样式 -->
+        <div class="space-y-16">
+            <!-- 案例1：家长好评如潮 -->
+            <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="grid md:grid-cols-2">
+                     <!-- 左侧图片区 - 优化图片适配 -->
+                    <div class="h-full min-h-[300px] md:min-h-0 overflow-hidden relative">
+                        <!-- 使用object-cover保持比例填充，同时设置合适的裁剪区域 -->
+                            <img src="22.png" 
+                                alt="家长好评案例" 
+                                class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                style="object-position: center;"> <!-- 确保主体内容在中间 -->
+                    </div>
+                    <!-- 右侧内容区 -->
+                    <div class="p-8 md:p-10 flex flex-col">
+                        <h3 class="text-2xl font-song font-semibold text-hui-900 mb-6">家长好评如潮</h3>
+                        <p class="text-hui-700 mb-6 flex-grow">搭建"五育融合"视域下劳动教育研学平台，获得家长广泛认可。</p>
+                        
+                        <div class="space-y-6 mb-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <div class="flex items-center mb-4">
+                                    <div class="text-yellow-400 flex">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span class="ml-2 text-hui-500 text-sm">家长反馈1</span>
+                                </div>
+                                <p class="text-hui-700 italic">"老师，我看孩子带回来的竹编工艺品还挺好看的，是基地里老师指导的吗？听孩子说是非遗，我们也想支持支持😀"</p>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <div class="flex items-center mb-4">
+                                    <div class="text-yellow-400 flex">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span class="ml-2 text-hui-500 text-sm">家长反馈2</span>
+                                </div>
+                                <p class="text-hui-700 italic">"王老师您好，之前在家里大人都心疼小孩，不让他做家务，现在十来岁了很多事情都不会做，然后参加你们研学之后，效果还挺好，主动要求洗碗，在后面又参加几次，发现他动手能力真是强了不少。👍👍他还经常和我们分享那些竹编做扇子之类的，每天都可开心了"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-tea-700 font-medium mt-auto">收到家长反馈 500+</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 案例2：传承非遗文化 -->
+            <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="grid md:grid-cols-2 flex-row-reverse">
+                    <!-- 左侧图片区（反向排列） -->
+                    <div class="h-full">
+                        <img src="23.png" alt="非遗文化传承案例" class="w-full h-full object-cover">
+                    </div>
+                    <!-- 右侧内容区 -->
+                    <div class="p-8 md:p-10 flex flex-col">
+                        <h3 class="text-2xl font-song font-semibold text-hui-900 mb-6">传承非遗文化</h3>
+                        <p class="text-hui-700 mb-6 flex-grow">打造"活力+跨界+创新"模式，让非遗文化焕发新生命力。</p>
+                        
+                        <ul class="space-y-4 mb-6">
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-tea-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa fa-check text-tea-700"></i>
+                                </div>
+                                <p class="text-hui-700 ml-4">非遗研学项目将传统技艺与现代理念结合，创造创新性产品</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-tea-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa fa-check text-tea-700"></i>
+                                </div>
+                                <p class="text-hui-700 ml-4">青年近距离接触学习非遗文化，促进焕发新的活力</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-8 h-8 bg-tea-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa fa-check text-tea-700"></i>
+                                </div>
+                                <p class="text-hui-700 ml-4">将非遗文化与旅游、教育产业跨界融合，拓展发展空间</p>
+                            </li>
+                        </ul>
+                        
+                        <div class="text-tea-700 font-medium mt-auto">覆盖非遗项目 68 项 | 培养青少年传承人 3000+</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 案例3：乡村发展 -->
+            <div class="bg-hui-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="grid md:grid-cols-2">
+                    <!-- 左侧图片区 -->
+                    <div class="h-full">
+                        <img src="158.jpg" alt="乡村发展案例" class="w-full h-full object-cover">
+                    </div>
+                    <!-- 右侧内容区 -->
+                    <div class="p-8 md:p-10 flex flex-col">
+                        <h3 class="text-2xl font-song font-semibold text-hui-900 mb-6">乡村发展</h3>
+                        <p class="text-hui-700 mb-6 flex-grow">赋能"共同富裕"助农产业，推动乡村经济发展。</p>
+                        
+                        <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                            <p class="text-hui-700 mb-4">大学生李平在大学时就帮助家人销售梨子，他发现家乡的梨果大味甜，应当销售很好，但是由于乡村信息的落后，导致果民们销售困难。</p>
+                            <p class="text-hui-700">毕业后，他毅然决然回到自己的家乡，帮助乡人们销售作物，并结合家乡的特点，打造了体验式乡村旅游地，帮助村民们的销售经济增长 30%，总体经济增长 40%。同时也为更多返乡的大学生们提供了就业机会，解决了当地人口流失严重，就业困难的问题，推动家乡的发展。</p>
+                        </div>
+                        
+                        <div class="mt-auto flex items-center">
+                            <div class="w-12 h-1 bg-tea-500 mr-4"></div>
+                            <p class="text-hui-700 italic">类似案例在我们的合作乡村已成功复制12个</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-hui-50 section-fade">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-song font-bold text-hui-900 mb-4">关于我们</h2>
+                <div class="w-20 h-1 bg-tea-500 mx-auto"></div>
+            </div>
+
+            <!-- 合作伙伴 -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-song font-semibold text-hui-900 mb-8 text-center">战略合作伙伴</h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full bg-white rounded-lg shadow-md">
+                        <thead>
+                            <tr class="bg-hui-100">
+                                <th class="py-4 px-6 text-left text-hui-900 font-semibold">名称</th>
+                                <th class="py-4 px-6 text-left text-hui-900 font-semibold">合作时间</th>
+                                <th class="py-4 px-6 text-left text-hui-900 font-semibold">签约内容</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-hui-100">
+                            <tr class="hover:bg-hui-50 transition-colors">
+                                <td class="py-4 px-6 text-hui-700">东夏中心学校</td>
+                                <td class="py-4 px-6 text-hui-700">2023年10月</td>
+                                <td class="py-4 px-6 text-hui-700">劳动教育课程合作</td>
+                            </tr>
+                            <tr class="hover:bg-hui-50 transition-colors">
+                                <td class="py-4 px-6 text-hui-700">金寨县永生利生态茶业有限公司</td>
+                                <td class="py-4 px-6 text-hui-700">2023年10月</td>
+                                <td class="py-4 px-6 text-hui-700">茶叶非遗体验基地</td>
+                            </tr>
+                            <tr class="hover:bg-hui-50 transition-colors">
+                                <td class="py-4 px-6 text-hui-700">鑫辉国际旅行社有限公司</td>
+                                <td class="py-4 px-6 text-hui-700">2023年11月</td>
+                                <td class="py-4 px-6 text-hui-700">研学旅行线路合作</td>
+                            </tr>
+                            <tr class="hover:bg-hui-50 transition-colors">
+                                <td class="py-4 px-6 text-hui-700">安徽省芜湖市陡沟镇</td>
+                                <td class="py-4 px-6 text-hui-700">2024年3月</td>
+                                <td class="py-4 px-6 text-hui-700">乡村研学基地建设</td>
+                            </tr>
+                            <tr class="hover:bg-hui-50 transition-colors">
+                                <td class="py-4 px-6 text-hui-700">安徽省芜湖市薪火社区</td>
+                                <td class="py-4 px-6 text-hui-700">2024年3月</td>
+                                <td class="py-4 px-6 text-hui-700">社区非遗推广项目</td>
+                            </tr>
+                            <tr class="hover:bg-hui-50 transition-colors">
+                                <td class="py-4 px-6 text-hui-700">芜湖市镜湖区教育局</td>
+                                <td class="py-4 px-6 text-hui-700">2025年4月</td>
+                                <td class="py-4 px-6 text-hui-700">区域研学教育合作</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 联系我们 -->
+            <div>
+                <h3 class="text-2xl font-song font-semibold text-hui-900 mb-8 text-center">联系我们</h3>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- 联系信息 -->
+                    <div>
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-tea-700/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-phone text-tea-700"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-hui-900 mb-2">咨询电话</h4>
+                                    <p class="text-hui-700">188 9536 6871</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-tea-700/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-envelope text-tea-700"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-hui-900 mb-2">电子邮箱</h4>
+                                    <p class="text-hui-700">18895366871@163.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-tea-700/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-map-marker text-tea-700"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-hui-900 mb-2">办公地址</h4>
+                                    <p class="text-hui-700">安徽省芜湖市安徽师范大学</p>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 咨询表单 -->
+                    <div class="bg-white rounded-lg p-8 shadow-md">
+                        <h4 class="text-xl font-song font-semibold text-hui-900 mb-6">在线咨询</h4>
+                        <form id="contactForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-hui-700 mb-2 text-sm">姓名</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-md border border-hui-300 focus:outline-none focus:ring-2 focus:ring-tea-500" placeholder="请输入您的姓名" required>
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-hui-700 mb-2 text-sm">电话</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 rounded-md border border-hui-300 focus:outline-none focus:ring-2 focus:ring-tea-500" placeholder="请输入您的联系电话" required>
+                            </div>
+                            
+                            <div>
+                                <label for="demand" class="block text-hui-700 mb-2 text-sm">咨询需求</label>
+                                <select id="demand" class="w-full px-4 py-3 rounded-md border border-hui-300 focus:outline-none focus:ring-2 focus:ring-tea-500" required>
+                                    <option value="">请选择咨询类型</option>
+                                    <option value="course">课程咨询</option>
+                                    <option value="cooperation">合作咨询</option>
+                                    <option value="product">产品购买</option>
+                                    <option value="other">其他咨询</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-hui-700 mb-2 text-sm">留言内容</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-md border border-hui-300 focus:outline-none focus:ring-2 focus:ring-tea-500" placeholder="请输入您的留言内容" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-tea-700 hover:bg-tea-500 text-white font-medium py-3 px-6 rounded-md transition-colors">
+                                提交咨询
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-hui-900 text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-song font-bold mb-4">徽映同行</h3>
+                    <p class="text-hui-300 text-sm mb-4">皖南乡村劳动教育研学旅行探索者</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-hui-300 hover:text-white transition-colors"><i class="fa fa-weixin text-xl"></i></a>
+                        <a href="#" class="text-hui-300 hover:text-white transition-colors"><i class="fa fa-weibo text-xl"></i></a>
+                        <a href="#" class="text-hui-300 hover:text-white transition-colors"><i class="fa fa-qq text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="text-hui-300 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#heritage" class="text-hui-300 hover:text-white transition-colors">非遗体验</a></li>
+                        <li><a href="#red" class="text-hui-300 hover:text-white transition-colors">红色力量</a></li>
+                        <li><a href="#products" class="text-hui-300 hover:text-white transition-colors">核心产品</a></li>
+                        <li><a href="#advantages" class="text-hui-300 hover:text-white transition-colors">研学优势</a></li>
+                        <li><a href="#cases" class="text-hui-300 hover:text-white transition-colors">精准案例</a></li>
+                        <li><a href="#about" class="text-hui-300 hover:text-white transition-colors">关于我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">课程分类</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#heritage" class="text-hui-300 hover:text-white transition-colors">徽州慢生活</a></li>
+                        <li><a href="#heritage" class="text-hui-300 hover:text-white transition-colors">劳动+非遗工坊</a></li>
+                        <li><a href="#heritage" class="text-hui-300 hover:text-white transition-colors">药食同源工坊</a></li>
+                        <li><a href="#red" class="text-hui-300 hover:text-white transition-colors">红色研学线路</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2 text-hui-300"><i class="fa fa-phone"></i> 188 9536 6871</li>
+                        <li class="flex items-center gap-2 text-hui-300"><i class="fa fa-envelope"></i> 18895366871@163.com</li>
+                        <li class="flex items-start gap-2 text-hui-300"><i class="fa fa-map-marker mt-1"></i> 安徽省芜湖市安徽师范大学</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-hui-700 pt-8 text-center text-hui-300 text-sm">
+                <p>© 2025 徽映同行 保留所有权利 | <a href="#" class="hover:text-white transition-colors">隐私政策</a> | <a href="#" class="hover:text-white transition-colors">服务条款</a></p>
+                <p class="mt-2">遵循大中小学研学旅行安全规范</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-tea-700 hover:bg-tea-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md transition-all duration-300 opacity-0 invisible z-50">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-hui-900/95', 'bg-blur', 'shadow-md');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.add('bg-transparent');
+                navbar.classList.remove('bg-hui-900/95', 'bg-blur', 'shadow-md');
+            }
+        });
+
+        // 移动端菜单
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+            } else {
+                menuBtn.innerHTML = '<i class="fa fa-times"></i>';
+            }
+        });
+
+        // 非遗体验标签切换
+        const heritageTabs = document.querySelectorAll('.heritage-tab');
+        const heritageContents = document.querySelectorAll('.heritage-content');
+        heritageTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有标签的active状态
+                heritageTabs.forEach(t => {
+                    t.classList.remove('active', 'bg-tea-700', 'text-white');
+                    t.classList.add('bg-hui-100', 'text-hui-900');
+                });
+                // 添加当前标签的active状态
+                tab.classList.add('active', 'bg-tea-700', 'text-white');
+                tab.classList.remove('bg-hui-100', 'text-hui-900');
+                
+                // 隐藏所有内容
+                heritageContents.forEach(content => {
+                    content.classList.add('hidden');
+                });
+                // 显示当前内容
+                const target = tab.getAttribute('data-target');
+                document.getElementById(target).classList.remove('hidden');
+            });
+        });
+
+        // 回到顶部按钮
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 关闭移动端菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+                    }
+                    // 滚动到目标位置
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-fade').forEach(section => {
+            observer.observe(section);
+        });
+
+        // 表单提交
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // 这里可以添加表单验证和提交逻辑
+                alert('咨询提交成功，我们会尽快与您联系！');
+                contactForm.reset();
+            });
+        }
+
+        // 统计图表
+        window.addEventListener('load', function() {
+            const ctx = document.getElementById('statsChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2021', '2022', '2023', '2024'],
+                        datasets: [
+                            {
+                                label: '参与学生人数',
+                                data: [320, 580, 950, 1500],
+                                backgroundColor: 'rgba(90, 122, 88, 0.7)',
+                                borderColor: 'rgba(90, 122, 88, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: '合作学校数量',
+                                data: [8, 15, 28, 42],
+                                backgroundColor: 'rgba(109, 135, 128, 0.7)',
+                                borderColor: 'rgba(109, 135, 128, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
